@@ -22,10 +22,12 @@ public sealed class ShortLinksController : ControllerBase
         _options = options.Value;
     }
 
-    /// <summary>Creates a short link from a long URL.</summary>
+    /// <summary>Creates a short link from a long URL. Requires X-API-Key header.</summary>
     [HttpPost("/api/links")]
+    [RequireApiKey]
     [ProducesResponseType(typeof(CreateLinkResponse), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public async Task<IActionResult> Create(
         [FromBody] CreateLinkRequest request,
         CancellationToken cancellationToken)

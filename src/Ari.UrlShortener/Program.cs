@@ -14,6 +14,8 @@ builder.Services.AddSwaggerGen();
 // Options
 builder.Services.Configure<ShortLinkOptions>(
     builder.Configuration.GetSection(ShortLinkOptions.SectionName));
+builder.Services.Configure<ApiKeyOptions>(
+    builder.Configuration.GetSection(ApiKeyOptions.SectionName));
 
 // Data
 builder.Services.AddDbContext<AppDbContext>(options =>
